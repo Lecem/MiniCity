@@ -34,6 +34,7 @@ public class DayNightToggle : MonoBehaviour
         UpdateUI(); // Ýlk UI güncellemesini yap
     }
 
+    
     public void ToggleDayNight()
     {
         isDay = !isDay;
@@ -44,7 +45,7 @@ public class DayNightToggle : MonoBehaviour
             directionalLight.color = dayColor;
             directionalLight.intensity = 2.2f;
             buttonText.text = "Night Mode";
-            DayNightButton.image.color = nightButtonColor;
+           // DayNightButton.image.color = nightButtonColor;
             mainCamera.backgroundColor = dayBackground;
 
             //Iþýklar
@@ -58,7 +59,7 @@ public class DayNightToggle : MonoBehaviour
             directionalLight.color = nightColor;
             directionalLight.intensity = 0f;
             buttonText.text = "Day Mode";
-            DayNightButton.image.color = dayButtonColor;
+            //DayNightButton.image.color = dayButtonColor;
             mainCamera.backgroundColor = nightBackground;
 
             //Iþýklar

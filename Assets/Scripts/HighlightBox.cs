@@ -6,6 +6,7 @@ public class HighlightBox : MonoBehaviour
     private MeshRenderer lastObject; // En son etkileþime girilen obje
     public string buildingName; //binanýn adýný tutacak
     public GameObject nameUI; //world canvas UI objesini tutacak.
+    public bool isMouseOver;
 
     private TextMeshProUGUI nameText;
 
@@ -15,13 +16,11 @@ public class HighlightBox : MonoBehaviour
     {
          lastObject = GetComponent<MeshRenderer>();
         lastObject.enabled = false;   
-
-        
-
     }
 
     private void OnMouseEnter()
     {
+        isMouseOver = true;
         Debug.Log(gameObject + "objeye gelindi");
 
         if (nameUI == null )
@@ -38,18 +37,25 @@ public class HighlightBox : MonoBehaviour
         //UI ý bina üstüne taþý
         nameUI.transform.position = transform.position + Vector3.up * yHigh;
 
-        //UI kameraya baktýrýr
-        nameUI.transform.LookAt(Camera.main.transform);
-        nameUI.transform.Rotate(0, 180, 0);
-
 
         lastObject.enabled = true;
 
     }
 
+    private void Update()
+    {
+        if (isMouseOver)
+        {
+            //UI kameraya baktýrýr
+            nameUI.transform.LookAt(Camera.main.transform);
+            nameUI.transform.Rotate(0, 180, 0);
+        }
+    }
+
 
     void OnMouseExit() 
     {
+        isMouseOver = false;
         Debug.Log(gameObject + "objeden çýkýldý");
 
         if(nameUI != null) //nameUI doluysa
